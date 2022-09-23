@@ -1,0 +1,170 @@
+.admin-table{
+    margin-top: 30px;
+    &__page-controll{
+        display: flex;
+        justify-items: center;
+        // justify-content: space-evenly;
+        
+        
+        
+        &__page-controll--previos{
+            display: flex;
+            justify-content: end;
+            width: 100%;
+            .page-controll__previos{
+                font-size:30px;
+                margin-left: 10%;
+                border-radius: 10px;
+                width: 100px;
+                height: auto;
+                background-color: rgba(245, 222, 179, 0);
+                border: 1px solid rgba(35, 177, 66, 0);
+                color:rgba(35, 177, 66, 0.514) ;
+            }
+            .page-controll__previos:hover{
+                border: 1px solid rgba(35, 177, 66, 0);
+                background-color: rgba(35, 177, 66, 0);
+                color:rgb(44, 105, 32) ;
+
+            }
+        }
+        &__page-controll--next{
+            display: flex;
+            justify-content: start;
+            width: 100%;
+            .page-controll__next{
+                font-size:30px;
+                margin-left: 10%;
+                border-radius: 10px;
+                width: 100px;
+                height: auto;
+                background-color: rgba(245, 222, 179, 0);
+                border: 1px solid rgba(35, 177, 66, 0);
+                color:rgba(35, 177, 66, 0.514) ;
+            }
+            .page-controll__next:hover{
+                border: 1px solid rgba(35, 177, 66, 0);
+                background-color: rgba(35, 177, 66, 0);
+                color:rgb(44, 105, 32) ;
+
+            }
+        }
+
+        
+    }
+    &__spinner{
+        display:flex; 
+        justify-content: end;   
+        align-items: center; 
+        margin-bottom:none; 
+        height:20px;
+        p{
+            margin-bottom:2px;
+            font-variant: all-small-caps;
+            color: #69a76c;
+        }
+    }
+}
+
+.table{
+    text-align: center;
+    vertical-align: middle;
+    &--container{
+        width: 100%;
+    }
+    &--theader{
+        // width: auto;
+        // color:white;
+        background-color: #bee2bf77;
+        border-bottom: 2px solid rgba(35, 177, 66, 0.514);
+        font-weight:bold;
+        color: rgb(68, 68, 68);
+        // white-space: pre-line;
+        td{
+            // vertical-align: middle;
+            text-align: center;
+            align-content: center;
+            padding: 10px;
+            vertical-align: middle;
+            width: 100px;
+            
+            // border: 1px white solid;
+        }
+        
+    }
+    &--tbody{
+        // width: auto;
+        background: white;
+        vertical-align: middle;
+        // color:white;
+        td{
+           
+            text-align: center;
+            align-content: center;
+            padding: 10px;
+            border: 1px white solid;
+        }
+    }
+}
+.admin-table__filds{
+    &--answer{
+        padding: 7px 10px 7px 10px;
+        border-radius: 100%;
+        // border:1px solid #5c8db4;
+        color:  #5c8db4;
+    }
+    &--answer:hover{
+        background-color: #5c8db4;
+        color: white;
+    }
+    &--link{
+        padding: 7px;
+        border-radius: 100%;
+        // border:1px solid #79d497;
+        color: #79d497;
+    }
+    &--link:hover{
+        background-color: #79d497;
+        color: white;
+    }
+    &--update{
+        padding: 8px 10px 8px 10px;
+        border-radius: 100%;
+        // border:1px solid #d4c379;
+        color: #d4c379;
+    }
+    &--update:hover{
+        background-color: #d4c379;
+        color: white;
+    }
+    &--excel{
+        padding: 6px 11px 6px 11px;
+        border-radius: 100%;
+        // border:1px solid #43a748;
+        color:  #43a748;
+    }
+    &--excel:hover{
+        background-color: #43a748;
+        color: white;
+    }
+    &--delete{
+        padding: 6px 11px 6px 11px;
+        border-radius: 100%;
+        // border:1px solid #c0583f;
+        color:  #c0583f;
+    }
+    &--delete:hover{
+        background-color: #c0583f;
+        color: white;
+    }
+    &--edit{
+        padding: 7px 10px 7px 10px;
+        border-radius: 100%;
+        // border:1px solid #5c8db4;
+        color:  #5c8db4;
+    }
+    &--edit:hover{
+        background-color: #5c8db4;
+        color: white;
+    }
+}

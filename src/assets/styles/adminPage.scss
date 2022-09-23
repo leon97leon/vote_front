@@ -1,0 +1,74 @@
+.admin-page-register{
+    &--conteiner{
+        padding: 5%;
+        // display: flex;
+        // justify-content: space-between;
+        .admin-page__add-quiz{
+            align-self: center;
+        }
+    }
+    &--content{
+        display: flex;
+        justify-content: space-between;
+        // justify-content: center;
+        padding-top: 5%;
+        // padding: 10%;
+        button{
+            max-width: 250px;
+            height: auto;
+            background-color: rgb(20, 161, 67);
+            border: none;
+        }
+        .btn-light-border{
+            background-color:rgba(255, 255, 255, 0);
+            border: 1px solid  rgb(20, 161, 67);
+            color: rgb(20, 161, 67);
+        }
+        .btn-light-border:hover{
+            background-color:rgb(20, 161, 67);
+            border: 1px solid  rgb(22, 141, 62);
+        }
+    }
+}
+
+.admin-page--container{
+    h3{
+        // display: inline;
+        text-align: center;
+        border-bottom: 3px solid cadetblue;
+    }
+}
+
+.admin-page--content{
+    display: flex;
+    flex-direction: column;
+    div{
+        padding: 10px;
+    }
+}
+.admin-page--round-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    p,
+    button{
+        width: auto;
+        display: flex;
+        align-items: center; 
+        padding: 10px;
+        margin: 10px;
+    }
+}
+
+.admin-page__nav{
+    &--exit{
+        padding-right: 20px;
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+    }
+    &--exit:hover{
+        color: rgba(255, 255, 255, 0.445);
+    }
+}

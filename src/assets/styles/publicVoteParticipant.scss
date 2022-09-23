@@ -1,0 +1,63 @@
+.public-vote__success-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.public-vote__success-page__text {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 17px;
+    color: #3986f6;
+}
+
+
+
+.public-vote__text {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    animation: color-change 1s infinite;
+}
+
+@keyframes color-change {
+  0% { color: white; }
+  50% { color: orange; }
+  100% { color: white; }
+}
+
+.public-vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/../assets/public_background.jpg')
+}
+.public-vote__title {
+    max-width: 250px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 19px;
+}
+
+.public-vote__finish {
+    font-size: 17px;
+    font-weight: bold;
+    background-color: $button-colors;
+}
+
+.public-vote__success-page-button {
+    font-weight: bold;
+    background-color: $button-colors;
+}
+
+.public-vote__background-image {
+    height: 150px;
+    background-image: url('assets/public_background.jpg');
+    background-size: cover;
+    background-position: center;
+}

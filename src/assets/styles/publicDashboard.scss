@@ -1,0 +1,76 @@
+.rating__diagram {
+  width: 100%;
+  //max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vote-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  //padding: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  //background-color: rgba(255,255,255,0.7);;
+}
+
+
+//.rating__diagram-chart {
+//  max-width: 300px;
+//}
+@media screen and (max-width: 1920px) {
+    .rating__diagram-chart {
+      max-width: 1200px;
+      width: 600px;
+      height: 200px;
+    }
+    .vote-dashboard {
+        justify-content: flex-start;
+       align-items: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+  .rating__diagram-chart {
+      max-width: 300px;
+    }
+  .vote-dashboard {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+.vote-dashboard__text {
+  text-align: center;
+  font-weight: bold;
+  color: #3986f6;
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+
+
+.rating__diagram-text {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.rating__diagram-qr {
+  text-align: center;
+}
+
+.rating__diagram-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vote-dashboard__legend {
+   margin-top: 10px;
+   color: black;
+   font-size: 12px;
+}

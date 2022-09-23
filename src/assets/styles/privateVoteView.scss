@@ -1,0 +1,128 @@
+.body--private .vote {
+   align-items: flex-start;
+   background: none;
+   padding: 0;
+}
+
+.private-vote {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   max-width: 600px;
+}
+
+.private-vote__round-select-wrapper {
+   display: flex;
+   justify-content: center;
+   min-width: 250px;
+   margin-bottom: 5px;
+}
+.private-vote__round-select-wrapper button {
+   max-width: 100px;
+   //margin-right: 15px;
+}
+
+
+.private-vote__title {
+   font-size: 12px;
+   text-align: center;
+}
+.private-vote__list-row {
+   margin-bottom: 15px;
+   padding-left: 10px;
+   display: flex;
+   font-size: 12px;
+   height: 30px;
+   align-items: center;
+   background-color: rgb(95, 158, 160, 0.1);
+}
+
+.private-vote__text {
+   margin-bottom: 5px;
+   text-align: center;
+   font-weight: bold;
+}
+.private-vote__save-vote {
+   margin-bottom: 50px;
+}
+
+.private-vote__list-checkbox {
+   display: flex;
+   justify-content: space-evenly;
+   width: 100%;
+
+}
+
+.private-vote__list--colored {
+   color: white;
+   background-color: rgb(95, 158, 160, 0.9);
+}
+.private-vote__list--colored .private-vote__list-checkbox{
+   padding-left: 20px;
+}
+
+.private-vote__list-label {
+   width: 200px;
+   font-size: 13px;
+   font-weight: bold;
+
+}
+
+.private-vote__list-checkbox p {
+   width: 20px;
+}
+
+.private-vote__list-checkbox div{
+   width: 100%;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+.private-vote__round-select {
+   display: none;
+}
+
+.private-vote__round-select--active {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.private-vote__wrapper {
+   max-width: 600px;
+   padding-top: 5px;
+   padding-left: 15px;
+   padding-right: 15px;
+   //padding: 30px;
+}
+.private-vote--scale{
+   display: flex;
+   flex-direction: row;
+   margin-top: 5px;
+   margin-bottom: 30px;
+   justify-content: center;
+   background: rgb(255,255,255);
+   color: cadetblue;
+   background: linear-gradient(90deg, rgba(236, 236, 236, 0.371) 0%,
+    rgb(171, 209, 212) 65%, rgb(135, 196, 201) 100%);
+   font-size: 18px;
+   div{
+      flex-wrap:nowrap;
+      align-content: stretch;
+      text-align: center;
+      max-width: 100px;
+      border: 1px solid cadetblue;
+  }
+}
+.private-vote__text-evaluation{
+   padding: 10px;
+   margin: 3% 20% 3% 20%;
+   text-align: center;
+   background-color: cadetblue;
+   color: white;
+}
+
+.private-vote__text-evaluation--finished {
+   background-color: orange;
+}
