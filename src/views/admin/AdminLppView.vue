@@ -8,10 +8,10 @@
     <div class="container" v-else>
 
       <div class="row" style="margin-bottom:5%">
-          <div class="col-6" style="text-align:left">
+          <div class="col-md-6 сol-12" style="text-align:left">
               <h1 style="font-size:30px">Администрирование ЛПП</h1>
           </div>
-          <div class="col-6" style="text-align:right">
+          <div class="col-md-6 сol-12" style="text-align:right">
               <b-button variant="success" :to="{name:'createLpp'}">Редактировать ЛПП</b-button> 
           </div>
       </div>
@@ -20,7 +20,7 @@
         <div class="col-6">
           <p></p>
         </div>
-        <div v-for="el in [1,2,3]" class="col-2" :key="el">
+        <div v-for="el in [1,2]" class="col-2" :key="el">
           <h6 style="font-size:8px; font-weight:700">Раунд <span>{{el}}</span></h6>
         </div>
       </div>
@@ -28,7 +28,7 @@
         <div class="col-6">
           <p></p>
         </div>
-        <div v-for="el,ind in ['round_1_finished', 'round_2_finished', 'round_3_finished']" class="col-2" :key="el">
+        <div v-for="el,ind in ['round_1_finished', 'round_2_finished']" class="col-2" :key="el">
           <AdminLppButton :round_finished="el" :numRound="ind+1" />
         </div>
       </div>
@@ -64,6 +64,11 @@ export default {
       loadingStatus:true,
     }
   },
+  created(){
+        this.$store.dispatch("quiz/check").then(res => {if (!res.data['json']){
+          this.$router.push({name:'adminQuiz'})
+        }})
+    },
   computed: mapState ({
     judgesList: state => state.lpp.judgesList,
   }),
@@ -80,6 +85,7 @@ export default {
   methods: {
 
   },
+
 }
 </script>
 

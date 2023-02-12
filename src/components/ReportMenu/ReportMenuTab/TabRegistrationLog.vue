@@ -15,7 +15,6 @@
                 <thead class="table--theader">
                     <tr>
                         <td style="width:150px"> Название опроса</td>
-                        <td style="width:150px"> Статус участника (админ, организатор, участник опроса, жюри)</td>
                         <td> Фамилия</td>
                         <td> Имя</td>
                         <td> Эл. почта</td>
@@ -30,15 +29,16 @@
                 </thead>
                 
                 <tbody>
-                    <td>КВИЗ</td>
-                    <td></td>
-                    <td>Иванов</td>
-                    <td>Иван</td>
-                    <td>pochta@pochta.ru</td>
-                    <td>ББ</td>
-                    <td>ОПИР</td>   
-                    <td>Аудитор</td>
-                    <td>Да</td>
+                    <tr v-for="item in this.res.part">
+                        <td>{{res.name}}</td>
+                        <td>{{item.familia}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.tb}}</td>
+                        <td>{{item.position}}</td>   
+                        <td>{{item.department}}</td>
+                        <td>{{item.result}}</td>
+                    </tr>
         
              </tbody>
               
@@ -48,14 +48,23 @@
     </div>
     </template>
  <script>
-     
-     export default {
-         data() {
-             return {
-                 
-            };
-        },
-        props: [],
-        
+     import { mapState } from 'vuex';
+export default {
+    data() {
+        return {
+            loadingStatus:false,
+        };
+    },
+    props: ['id'],
+    async mounted() {
+        this.$store.dispatch('quiz/reg_svod', {'id_quiz':this.id})
+    },
+    computed: mapState({
+            res: state => state.quiz.reg_svod.res,
+        }),
+    activated(){
+        this.$store.dispatch('quiz/reg_svod', {'id_quiz':this.id})
     }
+
+}
     </script>

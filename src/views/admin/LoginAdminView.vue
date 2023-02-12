@@ -9,7 +9,7 @@
         >
         <p style="margin:0;">Пароль:</p>
         <div style="display:flex; flex-direction: column; justify-content:center; aling-items:center;">
-        <input class="authorization__inputl"
+        <input v-on:keyup.enter="signIn()" class="authorization__inputl"
             style="text-align:center"
             v-model="user.password"
             placeholder="Пароль"
@@ -59,17 +59,19 @@ export default{
         switchVisibility() {
             this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
         },
-        async signIn(){
+        signIn(){
             this.loading=true;
-            await this.$store.dispatch('admin/loginAdmin', this.user)
+            this.$store.dispatch('admin/loginAdmin', this.user)
             .then(res=>{
-                this.$router.push({name:'admin'})
+                //console.log(res)
+                this.$store.commit('admin/loginAdmin',res.data)
+                this.$router.push('/adminQuiz')   
             })
-            .catch(err=>{
-                console.log(err.response)
-                alert('Не удалось авторизоваться')
-                this.user={} 
-            })   
+            // .catch(err=>{
+            //     console.log(err.response)
+            //     alert('Не удалось авторизоваться')
+            //     this.user={} 
+            // })   
                        
             this.loading=false;
         },

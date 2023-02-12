@@ -22,8 +22,8 @@
             <input type="radio" class="btn-check" name="options" id="r2" value="2" v-model="numRound" autocomplete="off">
             <label :class="{btnPassive: true, btnSelected: numRound===2}" style="margin:0 10px 0 10px" for="r2" @click="numRound=2">Раунд 2</label>
             
-            <input type="radio" class="btn-check" name="options" id="r3" value="3" v-model="numRound" autocomplete="off">
-            <label :class="{btnPassive: true, btnSelected: numRound===3}" for="r3" @click="numRound=3">Раунд 3</label>
+            <!-- <input type="radio" class="btn-check" name="options" id="r3" value="3" v-model="numRound" autocomplete="off">
+            <label :class="{btnPassive: true, btnSelected: numRound===3}" for="r3" @click="numRound=3">Раунд 3</label> -->
         </div>
         <div style="margin-top: 4%">
             <keep-alive>

@@ -4,8 +4,8 @@
     <b-navbar style="padding:0 2% 0 2%" type="dark" variant="success" class="admin-page__nav">
         <b-navbar-nav class="mr-auto">
             <b-navbar-brand href="#">VoteApp</b-navbar-brand>
-            <b-nav-item to="/adminQuiz" class="mr-auto">Квиз</b-nav-item>
-            <b-nav-item to="/adminLpp" class="mr-auto">ЛПП</b-nav-item>
+            <b-nav-item to="/adminQuiz" class="mr-auto">Опрос</b-nav-item>
+            <b-nav-item v-if="this.admin_status" to="/adminLpp" class="mr-auto">ЛПП</b-nav-item>
         </b-navbar-nav>
         
         <b-navbar-nav class="ml-auto">
@@ -59,12 +59,20 @@ tbody td{
 </style>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     data(){
         return{
             loadingStatus:false,
+            admin_status:false,
         }
     },
+    created(){
+        this.$store.dispatch("quiz/check").then(res => {this.admin_status = res.data['json']})
+    },
+    computed: mapState({
+            user: state => state.admin.status_admin,
+        }),
     methods:{
         async logout(){
             this.loadingStatus=true

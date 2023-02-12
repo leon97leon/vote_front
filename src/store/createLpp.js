@@ -89,7 +89,7 @@ export default {
         }
         return axios({
           method:'post',
-          url: API_URL + '/add_game/',
+          url: API_URL + 'add_game/',
           headers: {'Content-Type': 'multipart/form-data', Authorization: 'Token ' + admin.state.accessToken},
           data: formData,
         })
@@ -215,7 +215,7 @@ export default {
         formData.append("portrait", portrait)
         return await axios({
             method:'post',
-            url: API_URL + '/add_participant/',
+            url: API_URL + 'add_participant/',
             headers: {'Content-Type': 'multipart/form-data', Authorization: 'Token ' + admin.state.accessToken},
             data: formData,
         })
@@ -229,7 +229,7 @@ export default {
         formData.append("portrait", portrait)
         return await axios({
             method:'put',
-            url: API_URL + '/edit_delete_participant/'+data.id+'/',
+            url: API_URL + 'edit_delete_participant/'+data.id+'/',
             headers: {'Content-Type': 'multipart/form-data', Authorization: 'Token ' + admin.state.accessToken},
             data: formData,
         })
@@ -237,7 +237,7 @@ export default {
       async deleteParticipant(contex,participantID){
         return await axios({
           method:'delete',
-          url: API_URL + '/edit_delete_participant/'+String(participantID)+'/',
+          url: API_URL + 'edit_delete_participant/'+String(participantID)+'/',
           headers: {Authorization: 'Token ' + admin.state.accessToken},
         })
         .then(()=>{
@@ -247,7 +247,7 @@ export default {
       async deleteJudge(contex,judgeID){
         return await axios({
           method:'delete',
-          url: API_URL + '/edit_delete_judge/'+String(judgeID)+'/',
+          url: API_URL + 'edit_delete_judge/'+String(judgeID)+'/',
           headers: {Authorization: 'Token ' + admin.state.accessToken},
         })
         .then(()=>{
@@ -262,7 +262,7 @@ export default {
         formData.append("portrait", portrait)
         return await axios({
             method:'post',
-            url: API_URL + '/add_judge/',
+            url: API_URL + 'add_judge/',
             headers: {'Content-Type': 'multipart/form-data',Authorization: 'Token ' + admin.state.accessToken},
             data: formData,
         })

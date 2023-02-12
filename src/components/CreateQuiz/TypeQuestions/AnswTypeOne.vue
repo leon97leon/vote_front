@@ -1,22 +1,20 @@
 <template>
     <div class="row">
     
-        <b-form-group>
-        </b-form-group>
-        <b-form-radio class="" style="width:max-content" @change="setRightAnswer()" :name="'Questions'.concat(question.id)" :value="choices.id"
-            v-model="varible" plain>
-            <!-- {{name}} -->
-            <b-form-input v-model="choices.choice" style="width:100%;" placeholder="">
-            </b-form-input>
+        
+            <b-form-radio class="" style="width:max-content" @change="setRightAnswer()" :checked="varible==choices.id"  :name="'Questions'.concat(question.id)" :value="choices.id"
+             v-model="varible">
+                <b-form-input v-model="choices.choice" style="width:100%;" placeholder="">
+                </b-form-input>
 
-        </b-form-radio>
+            </b-form-radio>
         <button class="button_delete rounded-circle  btn-danger " v-on:click="deleteChoice(choices.id,question.choices)">Х</button>
 
     </div>
 </template>
 <script>
 export default {
-    props: ['choices', 'question'],
+    props: ['choices', 'question','id_answer'],
     data() {
         return {
             varible: 0,
@@ -26,15 +24,12 @@ export default {
         }
     },
 
-    watch: {
-        selected() {
-            let btn = document.getElementsByName('some-radios') == true
-            btn.checked = true;
-            btn.checked = false;
-            // if(document.getElementsByName('some-radios')==true){
+    mounted(){
+        if (this.choices.is_true){
+            this.varible = this.choices.id
 
-            // }
-        }
+    }
+    console.log(this.varible)    
     },
     methods: {
         // id set
@@ -42,13 +37,18 @@ export default {
         },
         setRightAnswer() {
             // this.varible=choices.id
+            console.log(this.varible)
             this.$parent.id_q = this.varible
+            console.log(this.question.choices)
+            this.question.choices.forEach(ch => {
+                ch.is_true=false
+            });
+            this.choices.is_true=true
+            
 
         }, deleteChoice(id,choice) {
             let index = id
-            console.log(index)
-            console.log(choice)
-            choice.splice(index, 1);
+            this.question.choices = this.question.choices.filter(item => item.id !== index)
         }
     }
 

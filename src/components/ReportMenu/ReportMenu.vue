@@ -51,14 +51,15 @@
 
 
             <div class="row justify-content-end " style="height:40px">
-                <b-button v-if="numTab!==5" class="col-md-2 col-sm-3 m-md-3  btn-warning">Выгрузка в Excel</b-button>
+                <b-button v-if="numTab!==5" class="col-lg-2 col-md-4 col-sm-4 m-md-3  btn-warning" @click="excel()">Выгрузка в Excel</b-button>
+                <!-- :href="linkExelResults+this.id+'/' -->
             </div>
             <keep-alive>
-                <TabSummary v-if="numTab==1"></TabSummary>
-                <TabReportQuestion v-if="numTab==2"></TabReportQuestion>
-                <TabAnswerLog v-if="numTab==3"></TabAnswerLog>
-                <TabRating v-if="numTab==4"></TabRating>
-                <TabRegistrationLog v-if="numTab==5"></TabRegistrationLog>
+                <TabSummary v-if="numTab==1" :id="this.id"></TabSummary>
+                <TabReportQuestion v-if="numTab==2" :id="this.id"></TabReportQuestion>
+                <TabAnswerLog v-if="numTab==3" :id="this.id"></TabAnswerLog>
+                <TabRating v-if="numTab==4" :id="this.id"></TabRating>
+                <TabRegistrationLog v-if="numTab==5" :id="this.id"></TabRegistrationLog>
 
 
             </keep-alive>
@@ -69,21 +70,25 @@
 
 <script>
 import { mapState } from 'vuex';
+import config from '@/scripts/api-config'
 
+const API_URL = config['API_LOCATION'] + 'api/quiz/'
 import Navigation from '@/components/Navigation.vue';
 import TabSummary from './ReportMenuTab/TabSummary.vue';
 import TabReportQuestion from './ReportMenuTab/TabReportQuestion.vue';
 import TabAnswerLog from './ReportMenuTab/TabAnswerLog.vue';
 import TabRating from './ReportMenuTab/TabRating.vue';
 import TabRegistrationLog from './ReportMenuTab/TabRegistrationLog.vue';
+import axios from 'axios';
 
 export default {
     data() {
         return {
             numTab: 1,
+            linkExelResults:'#'
         }
     },
-    
+    props:['id'],
     computed:{
      
         numTab:{
@@ -96,6 +101,38 @@ export default {
             }
         }
     },
+    computed: mapState ({
+        token: state => state.quiz.accessToken,
+
+    }),
+    mounted(){
+        this.linkExelResults=API_URL+'svod/excel-load/'
+    },
+    methods: 
+    {
+        excel(){
+            axios({
+          url:  this.linkExelResults + this.id+'/',
+          type: 'GET',
+          headers: {
+                    "Authorization": 'Token ' + this.token
+                 },
+          async: false,
+          responseType: 'blob', // important
+                }).then((response) => {
+                    if (response.data.type !== 'application/json')
+                    {
+                        const url = window.URL.createObjectURL(new Blob([response.data]));
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.setAttribute('download', 'svod.xlsx');
+                        document.body.appendChild(link);
+                        link.click();
+                    }
+                }).catch(err=>{alert('Сводка пустая!')});
+        }
+    
+    },    
     components: { Navigation, TabSummary, TabReportQuestion, TabAnswerLog, TabRating, TabRegistrationLog }
 }
 

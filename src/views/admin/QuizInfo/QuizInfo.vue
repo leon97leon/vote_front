@@ -6,10 +6,10 @@
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-md-6 col-12" style="text-align:left">
-                <h1>Вопросы опроса [название]</h1>
+                <h1>Вопросы опроса {{quiz_one.name}}</h1>
             </div>
             <div class="col-md-6 col-7 mb-1 " style="text-align:right">
-                <b-button class="align-middle" variant="success" :to="{name:'createQuiz'}">Редактировать опрос</b-button> 
+                <b-button class="align-middle" variant="success" :to="{name:'updateQuiz',params:{'id':quiz_one.id}}">Редактировать опрос</b-button> 
             </div>
         </div>
 
@@ -23,9 +23,9 @@
         <table class="table table-hover" style=" vertical-align: middle; min-width: 1000px;">
             <thead class="table--theader">
                 <tr>
-                   
-                    <td> № </td>
                     <td> Раздел вопроса</td>
+                    <td> № </td>
+                    
 
                     <td class="w-50"> Вопрос</td>
 
@@ -34,10 +34,23 @@
                 </tr>
             </thead>
             <tbody>
-             <td></td>
-             <td></td>
-             <td></td>
-             <td></td>
+                
+                <template  v-for="(item,i) in quiz_one.part">
+                    <!-- <tr v-for="(ques,j) in item.question" :key="`c${i}${j}`"> -->
+                    
+                    <tr v-for="(ques,j) in item.question" :key="`c${i}${j}`">
+                        <td>{{item.name}}</td>
+                        <td>{{j+1}}</td>
+                        <td>{{ques.body}}</td>
+                        <td v-if="ques.answer_type == 3">Произвольный текст</td>
+                        <td v-if="ques.answer_type == 1">Один из списка</td>
+                        <td v-if="ques.answer_type == 2">Несколько из списка</td>
+                        <td v-if="ques.answer_type == 4">Чек-бокс</td>
+                        <td v-if="ques.answer_type == 5">Вопрос со ставкой</td>
+                        <td v-if="ques.answer_type == 6">Вопрос со штрафом</td>
+                    </tr>
+                </template>
+                
              </tbody>
      
         </table>
@@ -57,6 +70,18 @@ export default {
             }
         };
     },
+    props:['id'],
+    
+    async mounted() {
+        this.loadingStatus=true
+        await this.$store.dispatch('quiz/partList',this.id)
+        //await this.$store.dispatch('lpp/judgesList')
+        this.loadingStatus=false
+    },
+    computed: mapState ({
+        quiz_one: state => state.quiz.part_one,
+
+    }),
    
     components: { Navigation }
 }

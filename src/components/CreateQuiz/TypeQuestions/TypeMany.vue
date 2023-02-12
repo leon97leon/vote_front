@@ -34,21 +34,12 @@ data(){ return {
             console.log(this.question.choices)
             this.id_answer++;
         },
- watch:{
-        id_q(){
-            for(let option of this.question.choices){
-                console.log(option)
-                if(option.id==this.id_q){
-                    option.is_true=true;
-                    console.log(option.id)
-                }else{
-                    option.is_true=false;
-                }
-            }
-            
-            // console.log(this.question.choices[this.id_q-1])
-        }
     },
+    created(){
+        if (this.question.choices != [])
+        {
+            this.id_answer = this.question.choices.length+1
+        }
     }
 }
 </script>

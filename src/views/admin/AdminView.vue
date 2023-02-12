@@ -10,8 +10,8 @@
                 <b-button class="align-middle" variant="success" :to="{name:'createQuiz'}">+ Создать новое голосование</b-button> 
             </div>
         </div>
-        <h4 class="mt-4">Фамилия ИО</h4>
-        <h4  class="mt-4">Роль: владелец</h4>
+        <h4 class="mt-4">{{fio.fio}}</h4>
+        <h4  class="mt-4">Роль: организатор</h4>
         <h4  class="mt-4">Опросы</h4>
         <AdminViewTable></AdminViewTable>
  
@@ -33,6 +33,7 @@ export default {
     },
    
     computed: mapState ({
+        fio: state => state.quiz.fio,
 
     }),
     created(){
@@ -41,6 +42,11 @@ export default {
     components: {
         Navigation,
         AdminTable,AdminViewTable
+    },
+    async mounted() {
+        this.loadingStatus = false
+        await this.$store.dispatch('quiz/fio')
+        console.log(this.fio)
     }
     
 }

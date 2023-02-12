@@ -11,17 +11,14 @@
                 label="Spinning"></b-spinner>
                 
             </div>
-            <table class="table table-hover" style=" vertical-align: middle; width:min-content;min-width: 1500px; max-width: 2000px;">
+            <table class="table table-hover" style=" vertical-align: middle; width:min-content;min-width: 1000px; max-width: 2000px;">
                 <thead class="table--theader">
                     <tr>
                         <td> Название команды/ID</td>
-                        <td> Раунд 1</td>
-                        <td> Раунд 2</td>
-                        <td> Раунд 3</td>
-                        <td> Раунд 4</td>
-                        <td> Раунд 5</td>
-                        <td> Раунд 6</td>
-                
+                        <template v-for="items in this.res[0].svod_part">
+                        <td>{{items.part}}</td>
+                        </template>
+                    
                         
                         <td>Итого</td>
                         <td>Ранг</td>
@@ -31,16 +28,14 @@
                 </thead>
                 
                 <tbody>
-                    <td>Супер-пупер</td>
-                    <td>55</td>
-                    <td>55</td>
-                    <td>66</td>
-                    <td>66</td>
-                    <td>66</td>
-                    <td>66</td>
-                    <td>66</td>
-                    <td>66</td>
-                   
+                    <tr v-for="(item,index) in this.res">
+                        <td>{{item.email}}</td>
+                        <template v-for="item2 in item.svod_part">
+                        <td>{{item2.total}}</td>
+                        </template>
+                        <td>{{item.itogo}}</td>
+                        <td>{{item.rang}}</td>
+                    </tr>
                  
         
              </tbody>
@@ -50,15 +45,24 @@
     </div>
     </template>
  <script>
-     
-     export default {
-         data() {
-             return {
-                 
-            };
-        },
-        props: [],
-        
+   import { mapState } from 'vuex';
+export default {
+    data() {
+        return {
+
+        };
+    },
+    props: ['id'],
+    async mounted() {
+        this.$store.dispatch('quiz/part_svod', {'id_quiz':this.id})
+    },
+    computed: mapState({
+            res: state => state.quiz.part_svod.res,
+        }),
+    activated(){
+        this.$store.dispatch('quiz/part_svod', {'id_quiz':this.id})
     }
+
+}
     </script>
 <style></style>

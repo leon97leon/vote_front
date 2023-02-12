@@ -3,7 +3,7 @@
     <div>
         <Navigation />
         <div class="container card" style="padding-top:2%">
-            <h1> Создание опроса</h1>
+            <h1> Редактирование опроса</h1>
             <div style="text-align:left" class="row">
                 
                 <div v-if="loadingStatus" class="text-center">
@@ -31,12 +31,12 @@
                     <div style="margin-top:10%" class="row">
                         <div class="col-lg-6 col-sm-4"></div>
                         <div class="col-lg-3 col-12 col-sm-10 mb-2 mx-auto">
-                            <b-button class="btn" @click="addQuiz">
-                                Сохранить
+                            <b-button class="btn" @click="RefreshQuiz">
+                                Обновить
                             </b-button>
                         </div>
                         <div class="col-lg-3 col-12 col-sm-10 mx-auto">
-                            <b-button class="btn-passive" @click="goToAdmin">
+                            <b-button class="btn-passive" @click="goToBack">
                                 Отмена
                             </b-button>
                         </div>
@@ -60,12 +60,12 @@ export default {
     data() {
         return {
             loadingStatus: true,
-            type: '', quiz: {
+            type: '', quiz1: {
                 name: '',
                 authorization_field:[{familia:false,
                                 tb :false,
                                 otdel:false,
-                                name :true,
+                                name :false,
                                 post:false,
                                 email:true,
                                 pin:true}],
@@ -98,10 +98,11 @@ export default {
             
         }
     },
+    props:['id'],
     methods: {
        
-        goToAdmin() {
-            this.$router.push({ name: 'adminQuiz' })
+        goToBack() {
+            this.$router.push({ path: '/adminQuiz/'+this.id})
         }, 
         handleFileUpload(){
             this.file = this.$refs.file.files[0];
@@ -113,18 +114,24 @@ export default {
             this.quiz.part.push({ id: id,id_question:2,question: [{id_q:1,choices:[]}]})
             this.id_part++;
         },
-        async addQuiz() {
-            await this.$store.dispatch('quiz/addQuiz', {avatar:this.file,data:this.quiz}).catch(err => {alert('Заполнены не все поля!')})
+        RefreshQuiz() {
+            this.$store.dispatch('quiz/RefreshQuiz', {avatar:this.file,data:this.quiz})
+            this.$router.push({ path: '/adminQuiz'})
             
         },
     },
-    computed: mapState({
-        users: state => state.UserData.user
-    }),
-    async mounted(){
-   
+    async mounted() {
+        this.loadingStatus=true
+        await this.$store.dispatch('quiz/UpdateQuiz',this.id)
+        //await this.$store.dispatch('lpp/judgesList')
         this.loadingStatus=false
-    }
+    },
+    computed: mapState ({
+        users: state => state.UserData.user,
+        quiz: state => state.quiz.updatequiz,
+
+    }),
+   
 }
 </script>
 <style>

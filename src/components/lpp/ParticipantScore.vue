@@ -3,7 +3,8 @@
 <div style="text-align:left; margin-bottom:8%">
     <div class="row" >
         <div class="col-sm-4 col-md-3 col-lg-3 col-xs-12">
-            <div class="circle-image-participant">
+            <div class="circle-image-participant mx-auto d-block">
+                <!-- circle-image-participant -->
                 <img 
                     style="display:inline"
                     :src="participant.portrait" 

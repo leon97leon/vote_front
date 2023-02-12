@@ -24,9 +24,9 @@
                     <div class="col-2">
                         <p style="font-weight:500; color:green; font-size:18px">Раунд 2:</p>
                     </div>
-                    <div class="col-2">
+                    <!-- <div class="col-2">
                         <p style="font-weight:500; color:green; font-size:18px">Раунд 3:</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row" v-for="itemJudge of judgesList" :key="itemJudge.id" style="margin-bottom:1%">
                     <StringBindJudges :judge="itemJudge"/>

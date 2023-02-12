@@ -75,6 +75,11 @@ export default {
             },
         }
     },
+    created(){
+        this.$store.dispatch("quiz/check").then(res => {if (!res.data['json']){
+          this.$router.push({name:'adminQuiz'})
+        }})
+    },
     async mounted(){
         await this.$store.dispatch('createLpp/gamesList')
         await this.$store.dispatch('lpp/judgesList')

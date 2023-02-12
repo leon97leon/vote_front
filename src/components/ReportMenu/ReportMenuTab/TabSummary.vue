@@ -11,17 +11,16 @@
                     label="Spinning"></b-spinner>
 
             </div>
-            <table class="table table-hover" style=" vertical-align: middle; min-width: 1200px;">
+            <table class="table table-hover" style=" vertical-align: middle; min-width: 1200px; background-color: None;">
                 <thead class="table--theader">
                     <tr>
-                        <td> Название опроса </td>
-                        <td> Вопрос</td>
+                        <td>Название опроса </td>
 
-                        <td> Дата открытия</td>
-                        <td> Дата закрытия</td>
-
+                        <td>Дата открытия</td>
+                        <td>Дата закрытия</td>
+                        <td>Количество регистраций</td>
                         <td>Начато опросов</td>
-                        <td> Завершено опросов</td>
+                        <td>Завершено опросов</td>
 
                         <td>Последняя запись </td>
                         <td>Статус опроса</td>
@@ -30,19 +29,15 @@
                 </thead>
 
                 <tbody>
-                    <td>"Название"</td>
-                    <td><select name="" id="">
-                            <option value="">1</option>
-                            <option value="">2</option>
-
-                        </select></td>
-                    <td>дд.мм.гг</td>
-                    <td>дд.мм.гг</td>
-                    
-                    <td>6</td>
-                    <td>6</td>
-                    <td>чч.мм дд.мм.гг</td>
-                    <td>закрыт</td>
+                    <td>{{this.res.name}}</td>
+                    <td>{{this.res.open_time}}</td>
+                    <td>{{this.res.close_time}}</td>
+                    <td>{{this.res.reg}}</td>
+                    <td>{{this.res.start}}</td>
+                    <td>{{this.res.finish}}</td>
+                    <td>{{this.res.update}}</td>
+                    <td v-if = "this.res.status">Открыт</td>
+                    <td v-else>Закрыт</td>
                     
                 </tbody>
             </table>
@@ -52,13 +47,20 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
     data() {
         return {
 
         };
     },
-    props: [],
+    props: ['id'],
+    async mounted() {
+        this.$store.dispatch('quiz/quiz_svod', {'id_quiz':this.id})
+    },
+    computed: mapState({
+            res: state => state.quiz.quiz_svod.res,
+        }),
 
 }
 </script>

@@ -3,7 +3,7 @@
 
         <b-form-group>
         </b-form-group>
-        <b-form-checkbox @change="setRightAnswer()" style="width:max-content" :name="'Questions'.concat(question.id)" :value="choices.id"
+        <b-form-checkbox @change="setRightAnswer()" style="width:max-content" :checked="varible==choices.id" :name="'Questions'.concat(question.id)" :value="choices.id"
             v-model="varible" plain > 
             <!-- {{name}} -->
             <b-form-input v-model="choices.choice" style="width:100%;" placeholder="">
@@ -25,15 +25,12 @@ export default {
         }
     },
 
-    watch: {
-        selected() {
-            let btn = document.getElementsByName('some-radios') == true
-            btn.checked = true;
-            btn.checked = false;
-            // if(document.getElementsByName('some-radios')==true){
+    mounted(){
+        if (this.choices.is_true){
+            this.varible = this.choices.id
 
-            // }
-        }
+    }
+    console.log(this.varible)    
     },
         
     methods: {
@@ -43,11 +40,12 @@ export default {
         setRightAnswer() {
             // this.varible=choices.id
             this.$parent.id_q = this.varible
+            this.choices.is_true=true
         
         }, deleteChoice(id,choice) {
             let index = id
-            console.log(index)
-            choice.splice(index, 1);
+            // console.log(this.question.choices)
+            this.question.choices = this.question.choices.filter(item => item.id !== index)
         }
     }
 }

@@ -18,13 +18,13 @@
             :judge="judge.id"
         />
     </div>
-    <div class="col-2">
+    <!-- <div class="col-2">
         <SelectBindJudges
             :game="findGame(roundList.find(el=>el.id===3).id)"
             :round="roundList.find(el=>el.id===3).id"
             :judge="judge.id"
         />
-    </div>
+    </div> -->
 </div>
 </div>
 </template>

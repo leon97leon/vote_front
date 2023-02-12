@@ -8,6 +8,7 @@ export default {
     namespaced: true,
     state: {
       accessToken:JSON.parse(localStorage.getItem('accessToken')||'null'),
+      status_admin:JSON.parse(localStorage.getItem('status_admin')||'null'),
       tb:[],
       departments:[],
       positions:[],
@@ -20,6 +21,8 @@ export default {
       },
       loginAdmin(state,data){
         state.accessToken=data.auth_token
+        state.status_admin=data
+        localStorage.setItem('status_admin',JSON.stringify(data))
         localStorage.setItem('accessToken',JSON.stringify(data.auth_token))
       },
       logoutAdmin(state){
@@ -40,15 +43,15 @@ export default {
     },
     actions: {
       loginAdmin({commit},{password,email}){
-        return axios({
+         return axios({
           method:'post',
           headers: {'Content-Type':'application/json'},
           url: API_URL + 'token/login/',
           data:{password,email}
         })
-        .then(response=>{
-          commit('loginAdmin',response.data)
-        })
+        // .then(response=>{
+        //   commit('loginAdmin',response.data)
+        // })
 
       },
       logoutAdmin({commit,state}){

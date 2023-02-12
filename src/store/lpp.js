@@ -221,7 +221,7 @@ export default {
       },
       getGamesList({commit,dispatch},judgeID){
         const promises=[]
-        for (let ind=1; ind<4;ind+=1){ //for any rounds 1,2,3
+        for (let ind=1; ind<3;ind+=1){ //for any rounds 1,2,3
           let roundID = findRoundIdByNumber(ind)
           promises.push(
             dispatch('getGame',{

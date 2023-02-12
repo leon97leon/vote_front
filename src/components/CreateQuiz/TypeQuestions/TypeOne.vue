@@ -3,8 +3,10 @@
         <div>
 
             <p>Варианты ответа</p>
-            <AnswTypeOne :choices="choice" :question=question v-for="choice in question.choices" :key="choice.id">
-            </AnswTypeOne>
+            <b-form-radio-group>
+                <AnswTypeOne :choices="choice" :question=question v-for="choice in question.choices" :key="choice.id">
+                </AnswTypeOne>
+            </b-form-radio-group>
             <b-button class="w-50 mt-2" @click="createChoiсes()">Добавить вариант</b-button>
             <!-- <p>Правильный ответ</p> -->
             <!-- <input type="text"> -->
@@ -33,15 +35,20 @@ export default {
     },
     methods: {
         createChoiсes() {
-            console.log(this.question)
             let id = this.id_answer;
             // , choices:[{id:1}]
             this.question.choices.push({ id: id, is_true: false })
             // this.question.push({choices:[{id: id, is_true:false}]})
-            console.log(this.question.choices)
             this.id_answer++;
         }
+        
 
     },
+    created(){
+        if (this.question.choices != [])
+        {
+            this.id_answer = this.question.choices.length+1
+        }
+    }
 }
 </script>

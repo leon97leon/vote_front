@@ -4,7 +4,7 @@
         <p style="font-weight:700">{{judge.name}}</p>
     </div>
     
-    <div class="col-2" v-for="numRound in [1,2,3]" :key="numRound" style="margin-bottom:5%">
+    <div class="col-2" v-for="numRound in [1,2]" :key="numRound" style="margin-bottom:5%">
         <img class="img" :src="imagePath(numRound)" @click="changeRoundStatus(numRound)"/>
     </div> 
 </div>
