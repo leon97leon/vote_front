@@ -20,7 +20,7 @@
                         <h5>ПИН</h5>
                         <input class="authorization__input"  v-model="pin" type="text">
                     </div>
-                    <a href = '#' v-b-modal.modal-pin>Забыли ПИН?</a>
+                    <a href = '#' v-b-modal.modal-pin>Дублировать ПИН на почту</a>
                     
                     <div style="margin-top:3%">
                         

@@ -47,20 +47,10 @@
 
 
                     </div>
-                    <div class="row mt-4 justify-content-center">
-
-                        <div class="col-8 row  justify-content-between">
-                            <div class="col-6 text-center p-2" style="background-color:orange">
-                                <h4 style="color:white;font-size: calc(1rem + .3vw)">Запомните ПИН для входа</h4>
-                            </div>
-                            <div class="col-5 col-4 text-center bg-info p-2">
-                                <h3  style="color:white">{{quiz_field.pin}}</h3>
-                            </div>
-                        </div>
-                    </div >
+                    
                     <div style="margin-top:5%">
                         <button @click="reg">
-                            <span v-if="!loadingStatus" >Зарегистрироваться</span>
+                            <span v-if="!loadingStatus" >Завершить регистрацию</span>
                             <b-spinner v-else variant="light" small></b-spinner>
                         </button>
                     </div>
