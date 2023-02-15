@@ -52,7 +52,6 @@ export default {
 
     methods: {
         async start(){
-            this.loadingStatus = true
             await this.$store.dispatch('quiz/reg_quiz', this.quiz)
         },
 

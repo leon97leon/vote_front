@@ -16,12 +16,7 @@
         <div v-if="this.game.part[this.id_part].status==false" class="col-md-5 col-12">
           <h1 v-if="this.game.authorization_needed">Добрый день,{{auth.name}}!</h1>
           <h1 v-else>Добрый день, участник!</h1>
-          <h2>Ответы на этот раунд не принимаются</h2>
-          <div style="margin-top:3%">
-                        <button @click="nextround_skip" style="background-color:gray">
-                            <span v-if="!loadingStatus">Перейти к следующему раунду</span>   
-                        </button>
-                    </div>
+          <h2>Дополнительный раздел игры откроется позднее</h2>
           <!-- <img src="@/../public/quiz.png" style="width: 400px !important;" alt=""> -->
         </div>
         <div v-if="this.game.status==true && this.game.part[this.id_part].status==true " class="col-md-10 col-12 row">
@@ -66,7 +61,7 @@
                   Повысить балл
                 </h6>
                 <select class=" col-md-2 col-lg-1 col-5 mt-2 mt-md-0" v-model="answer[item.id_label]['price']"  name="" id="1">
-                            <option value="" selected>Балл</option>
+                            <option value="" selected disabled>Балл</option>
                             <option value="1">+1</option>
                             <option value="2">+2</option>
                         
@@ -171,10 +166,6 @@ export default {
         this.$store.dispatch('quiz/chechauth', {'id_quiz':this.id})
         this.$store.dispatch('quiz/partList_forgame',this.id)
         this.loadingStatus=false
-        setInterval(async () => {
-                await this.$store.dispatch('quiz/checkpart',{'id_quiz':this.id,'id_part':this.id_part,'status_all':this.game.status,'status_part':this.game.part[this.id_part].status})
-            }
-                , 4 * 1000)
         
         
 
@@ -241,19 +232,6 @@ export default {
       closeround(){this.$bvModal.hide('modal-3');},
         nextround(){
           console.log(this.game.part.length)
-          
-          if (this.id_part < this.game.part.length - 1)
-          {
-            // console.log(this.id_part)
-            var next_id = parseInt(this.id_part)+1
-            this.$router.push("/UserQuiz/"+this.id+'/'+next_id)
-            
-          }
-          
-        },
-        nextround_skip(){
-          console.log(this.game.part.length)
-          this.$store.dispatch('quiz/add_finish', {'part':this.id_part,'quiz':this.id})
           if (this.id_part < this.game.part.length - 1)
           {
             // console.log(this.id_part)

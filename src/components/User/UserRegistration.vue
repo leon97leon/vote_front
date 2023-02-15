@@ -47,14 +47,23 @@
 
 
                     </div>
-                    
                     <div style="margin-top:5%">
-                        <button @click="reg">
-                            <span v-if="!loadingStatus" >Завершить регистрацию</span>
+                        <button>
+                            <span v-if="!loadingStatus" @click="reg">Зарегистрироваться</span>
                             <b-spinner v-else variant="light" small></b-spinner>
                         </button>
                     </div>
-                    
+                    <div class=" row mt-4 justify-content-center">
+
+                        <div class="col-8 row  justify-content-between">
+                            <div class="col-6 text-center bg-success p-2">
+                                <h4 style="color:white">Ваш ПИН:</h4>
+                            </div>
+                            <div class="col-5 col-4 text-center bg-info p-2">
+                                <h3  style="color:white">{{quiz_field.pin}}</h3>
+                            </div>
+                        </div>
+                    </div >
                 </div>
             </div>
         </div>

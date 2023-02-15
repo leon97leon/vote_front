@@ -20,12 +20,12 @@
                         <h5>ПИН</h5>
                         <input class="authorization__input"  v-model="pin" type="text">
                     </div>
-                    <a href = '#' v-b-modal.modal-pin>Дублировать ПИН на почту</a>
+                    <a href = '#' v-b-modal.modal-pin>Забыли ПИН?</a>
                     
                     <div style="margin-top:3%">
                         
-                        <button @click="login">
-                            <span v-if="!loadingStatus" >Войти</span>
+                        <button>
+                            <span v-if="!loadingStatus" @click="login">Войти</span>
                             <b-modal id="modal-pin" class="mt-0" hide-footer  title="Напоминание ПИН">
                                 <div class="row justify-content-center px-3">
         
