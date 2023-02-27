@@ -4,7 +4,14 @@
             <h2 class="col-lg-5  col-11">Журнал ответов участников</h2>
             <div>
 
-                <vue-good-table :columns="columns" @on-row-click="onRowClick" :rows="this.res">
+                <vue-good-table :columns="columns" @on-row-click="onRowClick" :rows="this.res"  :pagination-options="{
+    enabled: true,
+    perPageDropdown: [50, 100],
+    nextLabel: 'Вперед',
+    prevLabel: 'Назад',
+    rowsPerPageLabel: 'Показывать по',
+    ofLabel: 'из',
+  }">
 
                     <!-- :search-options="{  placeholder: 'Поиск по таблице', enabled: true }" -->
                     <template slot="table-row" scope="props">
@@ -210,16 +217,16 @@ export default {
                         enabled: true, placeholder: 'Название'
                     }
                 },
-
-                {
-                    label: 'Ответ участника',
-                    field: 'answer', width: '130px',
-                },
                 {
                     label: 'Верный ответ',
                     field: 'true_answer', width: '130px',
 
 
+                },
+
+                {
+                    label: 'Ответ участника',
+                    field: 'answer', width: '130px',
                 },
                 {
                     label: 'Совпадение (верно/неверно)',
@@ -331,5 +338,8 @@ th {
 
 .active {
     border: 5px solid green
+}
+.footer__navigation__page-btn{
+    width: max-content;
 }
 </style>

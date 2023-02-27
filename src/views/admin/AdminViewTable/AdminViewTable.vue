@@ -13,10 +13,11 @@
                         <span v-if="props.column.field == 'created_at'">
                             <span>{{props.row.created_at}}</span>
                         </span>
-                        <span v-if="props.column.field == 'Status'">
-                            <span v-if="props.row.status">Открыт</span>
-                            <span v-else>Закрыт</span>
+                        <span v-if="props.column.field == 'Section'">
+                            <router-link tag="a" :to="{name:'SectionEdit',params:{'id':props.row.id}}">Перейти
+                            </router-link>
                         </span>
+                      
                         <span v-if="props.column.field == 'report'">
                             <router-link tag="a" :to="{name:'Report',params:{'id':props.row.id}}">Перейти</router-link>
                         </span>
@@ -48,20 +49,18 @@
                             <b-button class="btn btn-warning table-button" @click="sendInfo(props.row.id)" v-b-modal.modal-2>Очистить</b-button>
 
                         </span>
-                        <span v-if="props.column.field == 'Section'">
-                            <router-link tag="a" :to="{name:'SectionEdit',params:{'id':props.row.id}}">Перейти
-                            </router-link>
-                        </span>
 
                         <span v-if="props.column.field == 'Edit_status'">
                             <b-button class="btn btn-warning table-button" @click="changestatus(props.row.id)">Открыть/
                                 Закрыть
                             </b-button>
                         </span>
-
+                        <span v-if="props.column.field == 'Status'">
+                            <span v-if="props.row.status">Открыт</span>
+                            <span v-else>Закрыт</span>
+                        </span>
                         <span v-if="props.column.field == 'Delete_quiz'">
-                            <b-button class="btn btn-warning table-button" style="color:red"
-                                @click="deleteQuiz(props.row.id)">
+                            <b-button class="btn btn-warning table-button" style="color:red"  @click="sendInfo(props.row.id)" v-b-modal.modal-3>
                                 Удалить</b-button>
                         </span>
 
@@ -144,6 +143,30 @@
                         </tr>
                     </tbody>
                 </table> -->
+                <b-modal id="modal-3" hide-footer>
+                    <!-- <p class="my-4">Hello from modal!</p> -->
+                    <div class="row">
+
+                        <h4 class="col-12">Вы уверены, что хотите удалить опрос? </h4>
+
+                        <div class="modal-footer" >
+                           <button type="button" class="btn btn-success" @click="deleteQuiz(selectedid)">Да</button>
+                           <button type="button" class="btn btn-danger" @click="cansel">Нет</button>
+                        </div>
+                    </div>
+                </b-modal>
+                <!-- <b-modal id="modal-section" hide-footer>
+                    <div class="row">
+
+                        <h4 class="col-12">Вы уверены, что хотите удалить опрос? </h4>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success">Да</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Нет</button>
+                        </div>
+                    </div>
+                </b-modal> -->
                 <b-modal id="modal-2" hide-footer>
                     <!-- <p class="my-4">Hello from modal!</p> -->
                     <div class="row">
@@ -156,8 +179,7 @@
                         </div>
                     </div>
                 </b-modal>
-                <b-modal id="modal-section" hide-footer>
-                    <!-- <p class="my-4">Hello from modal!</p> -->
+                <!-- <b-modal id="modal-section" hide-footer>
                     <div class="row">
 
                         <h4 class="col-12">Вы уверены, что хотите очистить ответы? </h4>
@@ -168,7 +190,7 @@
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Нет</button>
                         </div>
                     </div>
-                </b-modal>
+                </b-modal> -->
             </div>
         </div>
 
@@ -206,9 +228,12 @@
                         dateOutputFormat: 'dd.MM.yyyy',
                         filterOptions: {
             enabled: true,placeholder:'Дата'}
-                    }, {
-                        label: 'Статус',
-                        field: 'Status',
+                    },
+                    {
+                        label: 'Управление разделами опроса',
+                        field: 'Section',
+                        sortable: false,
+
                     },
                     {
                         label: 'Отчет по опросу',
@@ -249,20 +274,17 @@
 
                     },
                     {
-                        label: 'Управление разделами опроса',
-                        field: 'Section',
-                        sortable: false,
-
-                    },
-                    {
                         label: 'Изменить статус опроса',
                         field: 'Edit_status',
                         sortable: false,
 
+                    }, {
+                        label: 'Статус',
+                        field: 'Status',
                     },
 
                     {
-                        label: 'Удаление квиза',
+                        label: 'Удаление опроса',
                         field: 'Delete_quiz',
                         sortable: false,
 
@@ -313,6 +335,9 @@
             this.$store.dispatch('quiz/deleteanswer',id)
             this.$bvModal.hide('modal-2');
         },    
+        deleteQuiz(id) {
+         this.$store.dispatch('quiz/deletequiz', id)
+         this.$bvModal.hide('modal-3');},
         previosPage(text) {
             navigator.clipboard.writeText(text).then(function () {
                 alert('Ссылка скопирована');
@@ -321,9 +346,9 @@
         filterContentFromAPI(routeObject) {
 
         },
-        async deleteQuiz(id) {
-            await this.$store.dispatch('quiz/deletequiz', id)
-        },
+        // async deleteQuiz(id) {
+        //     await this.$store.dispatch('quiz/deletequiz', id)
+        // },
         async changestatus(id) {
             await this.$store.dispatch('quiz/changestatus', id)
             await this.$store.dispatch('quiz/quizList')
